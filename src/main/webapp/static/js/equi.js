@@ -1,16 +1,16 @@
 $(document).ready(function(){
 		
 	$(document).on("click", ".open-Modal", function(){
-		var Fede = $(this).data("id");
-		var nomfede = $(this).data("nombre");
-		$(".modal-body #Fede").val(Fede);
-		$(".modal-body #fedenombre").text(nomfede);
+		var Equi = $(this).data("id");
+		var nomequi = $(this).data("nombre");
+		$(".modal-body #Equi").val(Equi);
+		$(".modal-body #equinombre").text(nomequi);
 	})
 	
 	$(".btn-borrar").on("click", function(){
-		var id=$(".modal-body #Fede").val();		
+		var id=$(".modal-body #Equi").val();		
 		$.ajax({
-			url : "/sensei/federaciones/"+id,
+			url : "/sensei/equipos/"+id,
 			type: 'DELETE',
 		    success: function(result) {
 		    	$('tr[data-id="'+id+'"]').remove();				

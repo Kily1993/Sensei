@@ -22,6 +22,7 @@
 				<th>Id</th>
 				<th>Nombre</th>
 				<th>Pais</th>
+				<th>Ver</th>
 				<th>Editar</th>
 				<th>Borrar</th>
 			</tr>
@@ -33,6 +34,7 @@
 					<td>${federacion.id}</td>
 					<td>${federacion.nombre}</td>
 					<td>${federacion.pais}</td>
+					<td><a href="<c:url value="/federaciones/federacion/${federacion.id}" />">Ver</td>
 					<td><a id="editar-fede" class="btn btn-warning">Editar</a></td>
 					<td><a class="btn btn-danger open-Modal" data-nombre="${federacion.nombre}" data-id="${federacion.id}" data-toggle="modal" href='#modal-borrar'>Borrar</a></td>
 
@@ -55,7 +57,7 @@
 						<h4 class="modal-title">Añadir Federacion</h4>
 					</div>
 					<div class="modal-body">
-						<form method="POST" role="form">
+						<form method="POST" action="<c:url value="/federaciones/" />" role="form">
 							<legend>Federacion</legend>
 
 							<div class="form-group">

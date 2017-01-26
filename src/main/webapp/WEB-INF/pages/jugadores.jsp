@@ -6,10 +6,126 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script type="text/javascript" src="<c:url value="/static/js/juga.js" />"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Jugadores</title>
 </head>
 <body>
-<h3>Hola soy jugadores</h3>
+
+<table class="table table-striped table-hover">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nombre</th>
+				<th>Edad</th>
+				<th>Goles</th>
+				<th>Equipo</th>
+				<th>Editar</th>
+				<th>Borrar</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${jugadores}" var="jugador">
+				<tr data-id="${jugador.id}">
+					<td>${jugador.id}</td>
+					<td>${jugador.nombre}</td>
+					<td>${jugador.edad}</td>
+					<td>${jugador.goles}</td>
+					<td>${jugador.equi.nombre}</td>
+					<td><a id="editar-jugador" class="btn btn-warning">Editar</a></td>
+					<td><a class="btn btn-danger open-Modal"
+						data-nombre="${jugador.nombre}" data-id="${jugador.id}"
+						data-toggle="modal" href='#modal-borrar'>Borrar</a></td>
+
+
+				</tr>
+			</c:forEach>
+			<tr>
+				<td colspan="8"><a class="btn btn-primary" data-toggle="modal"
+					href='#modal-jugador'>Añadir Jugador</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<!-- Empieza la diversion -->
+	<div class="modal fade" id="modal-jugador">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Añadir Jugador</h4>
+				</div>
+				<div class="modal-body">
+					<form method="POST" action="<c:url value="/jugadores/" />" role="form">
+						<legend>Jugador</legend>
+
+
+						<div class="form-group">
+							<label for="Nombre">Nombre</label> <input type="text"
+								class="form-control" id="nombre-jugador" name="nombre"
+								placeholder="Nombre..">
+						</div>
+
+						<div class="form-group">
+							<label for="Edad">Edad</label> <input type="text"
+								class="form-control" id="edad-jugador" name="edad"
+								placeholder="Edad..">
+						</div>
+
+						<div class="form-group">
+							<label for="Goles">Goles</label> <input type="text"
+								class="form-control" id="goles-jugador" name="goles"
+								placeholder="Goles..">
+						</div>
+						<input type="hidden" name="id" id="inputId" class="form-control"
+							value="">
+
+						<div class="form-group">
+							<label for="Equipo">Equipo</label> <select name="equi"
+								id="input" class="form-control">
+								<c:forEach items="${equipos}" var="equi">
+
+									<option value="${equi.id}">${equi.nombre}</option>
+
+								</c:forEach>
+							</select>
+						</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Guardar</button>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Empieza la diversion 2.0 -->
+
+
+	<div class="modal fade" id="modal-borrar">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title">¿Estas seguro?</h4>
+				</div>
+				<div class="modal-body">
+					¿Estas seguro?¿Borrar esta mierda? <input type="hidden" id="jug">
+					<strong><span id="jugnombre"></span></strong>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+					<button type="button" class="btn btn-primary btn-borrar"
+						data-dismiss="modal">Si</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
 </body>
 </html>

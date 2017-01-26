@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import deportes.modelo.entidades.Equipo;
 import deportes.modelo.entidades.Federacion;
+import deportes.modelo.entidades.Jugador;
 import deportes.modelo.propertyEditors.FederacionPropertyEditor;
 import deportes.modelo.repositorio.RepositorioEquipo;
 import deportes.modelo.repositorio.RepositorioFederacion;
+import deportes.modelo.repositorio.RepositorioJugador;
 
 
 @Controller
@@ -33,12 +35,24 @@ public class ControllerEquipos {
 	
 	@Autowired
 	private FederacionPropertyEditor fepro;
+	@Autowired
+	private RepositorioJugador repojug;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String listEqui(Model model){
 		model.addAttribute("federac", repofe.findAll());
 		model.addAttribute("equipos", repoeq.findAll());
 		return "pages/equipo";
+	}
+	
+	@RequestMapping(value="/equipo/{id}", method = RequestMethod.GET)
+	public String mostrarJugador(Model model, @PathVariable Long id){
+		Equipo equi = repoeq.getOne(id);
+		Iterable<Jugador> jug = repojug.findAllByEqui(equi);
+		model.addAttribute("equipos", repoeq.findAll());
+		model.addAttribute("jugadores", jug);
+		
+		return "pages/jugadores";
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)

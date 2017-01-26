@@ -29,7 +29,8 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 	crossorigin="anonymous"></script>
-<link href="<c:url value="/static/css/style.css" />" rel="stylesheet">
+	<link rel="stylesheet" href="<c:url value="/static/css/style.css"/>">
+
 
 <sitemesh:write property='head' />
 
@@ -41,9 +42,9 @@
 			<a class="navbar-brand" href="#">CSD</a>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="active"><a href="/sensei">Home</a></li>
-				<li><a href="federaciones">Federaciones</a></li>
-				<li><a href="equipos">Equipos</a></li>
-				<li><a href="jugadores">Jugadores</a></li>
+				<li><a href="<c:url value="/federaciones"/>">Federaciones</a></li>
+				<li><a href="<c:url value="/equipos"/>">Equipos</a></li>
+				<li><a href="<c:url value="/jugadores"/>">Jugadores</a></li>
 			</ul>
 		</div>
 	</div>

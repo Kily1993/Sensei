@@ -8,6 +8,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script type="text/javascript" src="<c:url value="/static/js/equi.js" />"></script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Equipos</title>
 </head>
@@ -22,6 +24,7 @@
 				<th>Presupuesto</th>
 				<th>Federacion</th>
 				<th>Pais</th>
+				<th>Ver</th>
 				<th>Editar</th>
 				<th>Borrar</th>
 
@@ -37,6 +40,7 @@
 					<td>${equipo.presupuesto}</td>
 					<td>${equipo.fede.nombre}</td>
 					<td>${equipo.fede.pais}</td>
+					<td><a href="<c:url value="/equipos/equipo/${equipo.id}" />">Ver</a></td>
 					<td><a id="editar-equipo" class="btn btn-warning">Editar</a></td>
 					<td><a class="btn btn-danger open-Modal"
 						data-nombre="${equipo.nombre}" data-id="${equipo.id}"
@@ -61,7 +65,7 @@
 					<h4 class="modal-title">Añadir Equipo</h4>
 				</div>
 				<div class="modal-body">
-					<form method="POST" role="form">
+					<form method="POST" action="<c:url value="/equipos/" />" role="form">
 						<legend>Equipo</legend>
 
 
