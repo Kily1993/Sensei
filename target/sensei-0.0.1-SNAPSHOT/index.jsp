@@ -4,9 +4,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Inicio</title>
+
+
 </head>
 <body>
-<h3>Hola</h3>
+<div class="jumbotron">
+	<div class="container">
+		<h1>Hello, world!</h1>
+		<p>Contents ...</p>
+		<p>
+			<a class="btn btn-primary btn-lg">Learn more</a>
+		</p>
+	</div>
+</div>
 </body>
 </html>
