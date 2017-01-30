@@ -12,6 +12,29 @@
 </head>
 <body>
 
+<c:if test="${not empty equipoUnico}">
+<h3 class="text-center">${equipoUnico.nombre}</h3>
+
+<div class="container">
+			<div class="row">
+				<div class="media">
+					<a class="pull-left" href="#"> <img class="media-object"
+						src="${equipoUnico.imagen}" alt="Image" width="240" height="240">
+					</a>
+					<div class="media-body">
+						<h4 class="media-heading">${equipoUnico.nombre }</h4>
+						<p>${equipoUnico.estadio }</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+</c:if>
+<c:if test="${not empty pichichi}">
+<h3>Hay pichichi</h3>
+<p>${pichichi.goles} - ${pichichi.nombre}</p>
+</c:if>
+
 <table class="table table-striped table-hover">
 		<thead>
 			<tr>
@@ -28,11 +51,11 @@
 			<c:forEach items="${jugadores}" var="jugador">
 				<tr data-id="${jugador.id}">
 					<td>${jugador.id}</td>
-					<td>${jugador.nombre}</td>
+					<td><a href="<c:url value="/jugadores/jugador/${jugador.id}" />">${jugador.nombre}</a></td>
 					<td>${jugador.edad}</td>
 					<td>${jugador.goles}</td>
-					<td>${jugador.equi.nombre}</td>
-					<td><a id="editar-jugador" class="btn btn-warning">Editar</a></td>
+					<td><a href="<c:url value="/equipos/equipo/${jugador.equi.id}" />">${jugador.equi.nombre}</a></td>
+					<td><a	 class="editar-juga btn btn-warning">Editar</a></td>
 					<td><a class="btn btn-danger open-Modal"
 						data-nombre="${jugador.nombre}" data-id="${jugador.id}"
 						data-toggle="modal" href='#modal-borrar'>Borrar</a></td>
@@ -56,7 +79,7 @@
 					<h4 class="modal-title">Añadir Jugador</h4>
 				</div>
 				<div class="modal-body">
-					<form method="POST" action="<c:url value="/jugadores/" />" role="form">
+					<form method="POST" action="<c:url value="/jugadores" />" role="form">
 						<legend>Jugador</legend>
 
 
@@ -77,7 +100,12 @@
 								class="form-control" id="goles-jugador" name="goles"
 								placeholder="Goles..">
 						</div>
-						<input type="hidden" name="id" id="inputId" class="form-control"
+						<div class="form-group">
+								<label for="">Imagen</label> <input type="url"
+									class="form-control" id="imagen-jugador" placeholder="Imagen..."
+									name="imagen">
+							</div>
+						<input type="hidden" name="id" id="id-juga" class="form-control"
 							value="">
 
 						<div class="form-group">

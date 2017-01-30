@@ -27,6 +27,8 @@ public class Federacion {
 	@NotEmpty
 	private String pais;
 	
+	private String imagen;
+	
 	@OneToMany(fetch=FetchType.EAGER)
 	private Set<Equipo> equipos;
 
@@ -61,6 +63,15 @@ public class Federacion {
 	public void setEquipos(Set<Equipo> equipos) {
 		this.equipos = equipos;
 	}
+	
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
 
 	@Override
 	public int hashCode() {
@@ -68,6 +79,7 @@ public class Federacion {
 		int result = 1;
 		result = prime * result + ((equipos == null) ? 0 : equipos.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((imagen == null) ? 0 : imagen.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		result = prime * result + ((pais == null) ? 0 : pais.hashCode());
 		return result;
@@ -92,6 +104,11 @@ public class Federacion {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (imagen == null) {
+			if (other.imagen != null)
+				return false;
+		} else if (!imagen.equals(other.imagen))
+			return false;
 		if (nombre == null) {
 			if (other.nombre != null)
 				return false;
@@ -104,8 +121,8 @@ public class Federacion {
 			return false;
 		return true;
 	}
-	
-	
+
+
 	
 	
 	

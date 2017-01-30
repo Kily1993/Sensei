@@ -8,12 +8,32 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script type="text/javascript" src="<c:url value="/static/js/equi.js" />"></script>
+<script type="text/javascript"
+	src="<c:url value="/static/js/equi.js" />"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Equipos</title>
 </head>
 <body>
+
+	<c:if test="${not empty federacionUnica}">
+		<h3 class="text-center">${federacionUnica.nombre}</h3>
+		<div class="container">
+			<div class="row">
+				<div class="media">
+					<a class="pull-left" href="#"> <img class="media-object"
+						src="${federacionUnica.imagen}" alt="Image" width="240" height="240">
+					</a>
+					<div class="media-body">
+						<h4 class="media-heading">${federacionUnica.nombre }</h4>
+						<p>${federacionUnica.pais }</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</c:if>
 
 	<table class="table table-striped table-hover">
 		<thead>
@@ -38,10 +58,11 @@
 					<td>${equipo.nombre}</td>
 					<td>${equipo.estadio}</td>
 					<td>${equipo.presupuesto}</td>
-					<td>${equipo.fede.nombre}</td>
+					<td><a
+						href="<c:url value="/federaciones/federacion/${equipo.fede.id}"  />">${equipo.fede.nombre}</a></td>
 					<td>${equipo.fede.pais}</td>
 					<td><a href="<c:url value="/equipos/equipo/${equipo.id}" />">Ver</a></td>
-					<td><a id="editar-equipo" class="btn btn-warning">Editar</a></td>
+					<td><a class="editar-equi btn btn-warning">Editar</a></td>
 					<td><a class="btn btn-danger open-Modal"
 						data-nombre="${equipo.nombre}" data-id="${equipo.id}"
 						data-toggle="modal" href='#modal-borrar'>Borrar</a></td>
@@ -65,7 +86,8 @@
 					<h4 class="modal-title">Añadir Equipo</h4>
 				</div>
 				<div class="modal-body">
-					<form method="POST" action="<c:url value="/equipos/" />" role="form">
+					<form method="POST" action="<c:url value="/equipos" />"
+						role="form">
 						<legend>Equipo</legend>
 
 
@@ -86,7 +108,12 @@
 								class="form-control" id="presupuesto-equipo" name="presupuesto"
 								placeholder="Input field">
 						</div>
-						<input type="hidden" name="id" id="inputId" class="form-control"
+						<div class="form-group">
+							<label for="">Imagen</label> <input type="url"
+								class="form-control" id="imagen-equipo" placeholder="Imagen..."
+								name="imagen">
+						</div>
+						<input type="hidden" name="id" id="id-equi" class="form-control"
 							value="">
 
 						<div class="form-group">

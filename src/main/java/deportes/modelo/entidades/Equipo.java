@@ -35,6 +35,8 @@ public class Equipo {
 	@NotNull
 	private Integer presupuesto;
 	
+	private String imagen;
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "fede", nullable = false)
@@ -91,6 +93,14 @@ public class Equipo {
 		this.jugador = jugador;
 	}
 
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -98,6 +108,7 @@ public class Equipo {
 		result = prime * result + ((estadio == null) ? 0 : estadio.hashCode());
 		result = prime * result + ((fede == null) ? 0 : fede.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((imagen == null) ? 0 : imagen.hashCode());
 		result = prime * result + ((jugador == null) ? 0 : jugador.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		result = prime * result + ((presupuesto == null) ? 0 : presupuesto.hashCode());
@@ -128,6 +139,11 @@ public class Equipo {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (imagen == null) {
+			if (other.imagen != null)
+				return false;
+		} else if (!imagen.equals(other.imagen))
+			return false;
 		if (jugador == null) {
 			if (other.jugador != null)
 				return false;
@@ -145,6 +161,8 @@ public class Equipo {
 			return false;
 		return true;
 	}
+
+	
 
 	
 

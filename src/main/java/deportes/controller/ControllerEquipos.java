@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import deportes.modelo.entidades.Equipo;
 import deportes.modelo.entidades.Federacion;
@@ -49,9 +50,11 @@ public class ControllerEquipos {
 	public String mostrarJugador(Model model, @PathVariable Long id){
 		Equipo equi = repoeq.getOne(id);
 		Iterable<Jugador> jug = repojug.findAllByEqui(equi);
+		Jugador pichichi = repojug.findFirstByEquiOrderByGolesDesc(equi);
 		model.addAttribute("equipos", repoeq.findAll());
 		model.addAttribute("jugadores", jug);
-		
+		model.addAttribute("EquipoUnico", repoeq.findOne(id));
+		model.addAttribute("pichichi", pichichi);
 		return "pages/jugadores";
 	}
 	
@@ -78,5 +81,10 @@ public class ControllerEquipos {
 	public void initBinder(WebDataBinder webDataBinder){
 		webDataBinder.registerCustomEditor(Federacion.class, fepro);
 	}
-
+	@RequestMapping(method=RequestMethod.GET, value="/{id}")
+	@ResponseBody
+	public Equipo buscarEquipo(@PathVariable Long id){
+		Equipo equi =repoeq.findOne(id);
+		return equi; 
+	}
 }
